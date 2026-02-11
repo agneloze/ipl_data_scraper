@@ -124,7 +124,8 @@ def get_career_stats(player_id):
             row['Fours'] = career_bat.get('Fours', '')
             row['Sixes'] = career_bat.get('Sixes', '')
             row['Not_Outs'] = career_bat.get('NotOuts', '')
-            #row['Stumpings'] = career_bat.get('Stumpings', '')
+            row['Catches'] = career_bat.get('Catches', '')
+            row['Stumpings'] = career_bat.get('Stumpings', '')
 
 
     # Get bowling career stats
@@ -184,7 +185,7 @@ def main():
         conn = sqlite3.connect(f'{output_file}.db')
         df.to_sql(name='employees', con=conn, if_exists='replace', index=False)
         df.to_csv(f'{output_file}.csv')
-        df.to_excel(output_file, index=False, sheet_name='Career Stats')
+        df.to_excel(f'{output_file}.xlsx', index=False, sheet_name='Career Stats')
 
         print(f"\n✅ SUCCESS! Data saved to {output_file}")
         print(f"📊 Total players with data: {len(df)}")
